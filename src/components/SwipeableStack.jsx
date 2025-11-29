@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import { motion, useMotionValue, useTransform, AnimatePresence, animate } from 'framer-motion';
 import LayeredCard from './LayeredCard';
 
-const SwipeableStack = ({ cards: initialCards }) => {
+const SwipeableStack = forwardRef(({ cards: initialCards }, ref) => {
     const [cards, setCards] = useState(initialCards);
 
     const removeCard = (id) => {
@@ -14,12 +14,10 @@ const SwipeableStack = ({ cards: initialCards }) => {
         { scale: 1, rotate: 0, x: 0, y: 0, zIndex: 50 },         // Front - Center
         { scale: 1, rotate: 8, x: 0, y: 0, zIndex: 40 },      // 2nd - Peeking Top Right
         { scale: 1, rotate: -8, x: 0, y: 0, zIndex: 30 },     // 3rd - Peeking Top Left
-        { scale: 1, rotate: 5, x: 0, y: 0, zIndex: 20 },      // 4th - Peeking Top Right (Higher)
-        { scale: 1, rotate: -4, x: 0, y: 0, zIndex: 10 },    // 5th - Peeking Top Left (Higher)
-        { scale: 1, rotate: 3, x: 0, y: 0, zIndex: 5 },        // 6th - Top Center
+        // 6th - Top Center
     ];
 
-    const handleSwipeRight = async () => {
+    const swipeRight = async () => {
         // Logic to animate top card right and remove
         if (cards.length > 0) {
             const topCard = cards[0];
@@ -27,13 +25,18 @@ const SwipeableStack = ({ cards: initialCards }) => {
         }
     };
 
-    const handleSwipeLeft = async () => {
+    const swipeLeft = async () => {
         // Logic to animate top card left and remove
         if (cards.length > 0) {
             const topCard = cards[0];
             removeCard(topCard.id);
         }
     };
+
+    useImperativeHandle(ref, () => ({
+        swipeRight,
+        swipeLeft
+    }));
 
     return (
         <div className="relative w-full h-full flex flex-col items-center justify-end pb-12">
@@ -72,25 +75,9 @@ const SwipeableStack = ({ cards: initialCards }) => {
                     </div>
                 )}
             </div>
-
-            {/* Controls */}
-            <div className="flex gap-4 z-50 w-full max-w-[320px] px-4">
-                <button
-                    onClick={handleSwipeRight}
-                    className="flex-1 bg-white text-black font-bold text-lg py-4 rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-105 active:scale-95 transition-transform"
-                >
-                    Share
-                </button>
-                <button
-                    onClick={handleSwipeLeft}
-                    className="flex-1 bg-[#222] text-white font-medium text-lg py-4 rounded-full border border-white/10 hover:bg-[#333] active:scale-95 transition-all"
-                >
-                    Cancel
-                </button>
-            </div>
         </div>
     );
-};
+});
 
 const Card = ({ card, index, config, onRemove }) => {
     const x = useMotionValue(0);
@@ -112,6 +99,7 @@ const Card = ({ card, index, config, onRemove }) => {
 
     return (
         <motion.div
+            id={isFront ? "active-swipe-card" : undefined}
             className="absolute w-full flex items-center justify-center"
             style={{
                 zIndex: config.zIndex,
