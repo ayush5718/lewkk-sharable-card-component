@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "background": "/images/background.png",
+        "foreground": "/images/foreground.png",
+        "topLayer": "/images/card-top.png"
+    },
+    {
+        "id": 2,
+        "background": "/images/theme2bg.png",
+        "topLayer": "/images/card2.png"
+    },
+    {
+        "id": 3,
+        "background": "/images/theme3bg.png",
+        "foreground": "/images/foreground3.png",
+        "topLayer": "/images/card3.png"
+    },
+    {
+        "id": 4,
+        "background": "/images/theme3bg.png",
+        "foreground": "/images/foreground3.png",
+        "topLayer": "/images/card3.png"
+    },
+    {
+        "id": 5,
+        "background": "/images/theme3bg.png",
+        "foreground": "/images/foreground3.png",
+        "topLayer": "/images/card3.png"
+    },
+    {
+        "id": 6,
+        "background": "/images/background.png",
+        "foreground": "/images/foreground.png",
+        "topLayer": "/images/card-top.png"
+    },
+    {
+        "id": 7,
+        "background": "/images/background.png",
+        "foreground": "/images/foreground.png",
+        "topLayer": "/images/card-top.png"
+    },
+    {
+        "id": 8,
+        "background": "/images/theme2bg.png",
+        "topLayer": "/images/card2.png"
+    },
+    {
+        "id": 9,
+        "background": "/images/theme3bg.png",
+        "foreground": "/images/foreground3.png",
+        "topLayer": "/images/card3.png"
+    },
+    {
+        "id": 10,
+        "background": "/images/theme3bg.png",
+        "foreground": "/images/foreground3.png",
+        "topLayer": "/images/card3.png"
+    },
+    {
+        "id": 11,
+        "background": "/images/theme3bg.png",
+        "foreground": "/images/foreground3.png",
+        "topLayer": "/images/card3.png"
+    },
+    {
+        "id": 12,
+        "background": "/images/background.png",
+        "foreground": "/images/foreground.png",
+        "topLayer": "/images/card-top.png"
+    }
+]
